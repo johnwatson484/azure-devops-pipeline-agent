@@ -2,4 +2,7 @@
 envFrom:
 - configMapRef:
     name: {{ .Values.name }}
+volumeMounts:
+- mountPath: /azr
+  name: azr-dir
 {{- end -}}
