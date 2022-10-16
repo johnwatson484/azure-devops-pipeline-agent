@@ -12,4 +12,4 @@ extends:
   template: build.yaml@templates
   parameters:
     repo: azure-devops-pipeline-agent
-    framework: docker
+    framework: helm
