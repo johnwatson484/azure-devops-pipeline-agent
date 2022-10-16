@@ -6,5 +6,6 @@ volumeMounts:
 - mountPath: /azp
   name: azp-dir
 securityContext:
-  privileged: true
+  privileged: {{ .Values.container.privileged }}
+
 {{- end -}}
