@@ -1,3 +1,4 @@
+environment: production
 image: johnwatson484/azure-devops-pipeline-agent
 name: azure-devops-pipeline-agent
 
