@@ -16,3 +16,4 @@ agent:
   url: https://dev.azure.com/johnwatson484
   pat: mySecretPATCreatedInAzureDevOps
   pool: Kubernetes
+  workDir: azp

@@ -8,3 +8,4 @@ services:
       AZP_URL: https://dev.azure.com/johnwatson484
       AZP_TOKEN: mySecretPATFromAzureDevOps
       AZP_POOL: Kubernetes
+      AZP_WORK: azp
