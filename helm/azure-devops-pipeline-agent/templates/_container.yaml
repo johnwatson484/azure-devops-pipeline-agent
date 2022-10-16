@@ -5,4 +5,6 @@ envFrom:
 volumeMounts:
 - mountPath: /azp
   name: azp-dir
+securityContext:
+  privileged: true
 {{- end -}}
