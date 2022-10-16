@@ -1,0 +1,15 @@
+trigger:
+  - main
+
+resources:
+  repositories:
+  - repository: templates
+    type: github
+    endpoint: John D Watson
+    name: johnwatson484/azure-devops-templates
+
+extends:
+  template: build.yaml@templates
+  parameters:
+    repo: azure-devops-pipeline-agent
+    framework: docker
