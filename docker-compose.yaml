@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  azure-devops-pipeline-agent:
+    build: .
+    image: azure-devops-pipeline-agent
+    container_name: azure-devops-pipeline-agent
+    environment:
+      AZP_URL: https://dev.azure.com/johnwatson484
+      AZP_TOKEN: mySecretPATFromAzureDevOps
+      AZP_POOL: Kubernetes
