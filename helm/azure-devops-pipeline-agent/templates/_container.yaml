@@ -8,5 +8,5 @@ envFrom:
 - configMapRef:
     name: {{ .Values.name }}
 - name: docker-graph-storage
-  mountPath: /var/run/docker.sock
+    mountPath: /var/run/docker.sock
 {{- end -}}
