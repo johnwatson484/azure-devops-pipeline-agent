@@ -10,6 +10,8 @@ container:
   limitCpu: 1000m
   privileged: true
   allowPrivilegeEscalation: true
+  runAsUser: 0
+  runAsNonRoot: false
 
 deployment:
   replicas: 3

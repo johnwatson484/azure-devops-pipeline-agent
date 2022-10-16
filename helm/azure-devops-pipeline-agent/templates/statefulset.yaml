@@ -3,6 +3,10 @@
 spec:
   template:
     spec:
+      securityContext:
+        fsGroup: {{ .Values.deployment.runAsUser }}
+        runAsUser: {{ .Values.deployment.runAsUser }}
+        runAsNonRoot: {{ .Values.deployment.runAsNonRoot }}
       containers:
       - {{ include "helm-library.container" (list . "azure-devops-pipeline-agent.container") }}
       volumes:
