@@ -6,6 +6,6 @@ spec:
       containers:
       - {{ include "helm-library.container" (list . "azure-devops-pipeline-agent.container") }}
       volumes:
-      - name: azr-dir
+      - name: azp-dir
         emptyDir: {}
 {{- end -}}
