@@ -1,14 +1,27 @@
-{{- include "helm-library.statefulset" (list . "azure-devops-pipeline-agent.statefulset") -}}
-{{- define "azure-devops-pipeline-agent.statefulset" -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.name | quote }}
+  labels:
+    {{- include "azure-devops-pipeline-agent.labels" . | nindent 4 }}
 spec:
+  podManagementPolicy: Parallel
+  replicas: {{ .Values.deployment.replicas }}
+  serviceName: {{ .Values.name | quote }}
+  selector:
+    matchLabels:
+      {{- include "azure-devops-pipeline-agent.selector-labels" . | nindent 6 }}
   template:
+    metadata:
+      labels:
+        {{- include "azure-devops-pipeline-agent.labels" . | nindent 8 }}
+      annotations:
+        redeployOnChange: {{ randAlphaNum 5 | quote }}
     spec:
-      containers:
-      - {{ include "helm-library.container" (list . "azure-devops-pipeline-agent.container") }}
       volumes:
-      - name: azp-dir
-        emptyDir: {}
       - name: docker-graph-storage
         hostPath:
             path: /var/run/docker.sock
-{{- end -}}
+      containers:
+      -
+{{ include "azure-devops-pipeline-agent.container.tpl" . | indent 8 }}

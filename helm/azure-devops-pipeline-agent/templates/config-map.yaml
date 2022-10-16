@@ -1,7 +1,10 @@
-{{- include "helm-library.configmap" (list . "azure-devops-pipeline-agent.configmap") -}}
-{{- define "azure-devops-pipeline-agent.configmap" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name | quote }}
+  labels:
+    {{- include "azure-devops-pipeline-agent.labels" . | nindent 4 }}
 data:
   AZP_URL: {{ .Values.agent.url }}
   AZP_TOKEN: {{ .Values.agent.pat }}
   AZP_POOL: {{ .Values.agent.pool }}
-{{- end -}}

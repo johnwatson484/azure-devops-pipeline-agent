@@ -1,12 +1,12 @@
-{{- define "azure-devops-pipeline-agent.container" -}}
+{{- define "azure-devops-pipeline-agent.container.tpl" -}}
+name: {{ .Values.name | quote }}
+image: {{ .Values.image | quote }}
+imagePullPolicy: {{ .Values.container.imagePullPolicy | quote }}
+securityContext:
+  privileged: true
 envFrom:
 - configMapRef:
     name: {{ .Values.name }}
-volumeMounts:
-- mountPath: /azp
-  name: azp-dir
 - name: docker-graph-storage
   mountPath: /var/run/docker.sock
-securityContext:
-  privileged: {{ .Values.container.privileged }}
-  {{- end -}}
+{{- end -}}
