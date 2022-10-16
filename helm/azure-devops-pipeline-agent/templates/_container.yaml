@@ -5,5 +5,7 @@ envFrom:
 volumeMounts:
 - mountPath: /azp
   name: azp-dir
+- name: docker-graph-storage
+  mountPath: /var/run/docker.sock
 
 {{- end -}}

@@ -8,4 +8,7 @@ spec:
       volumes:
       - name: azp-dir
         emptyDir: {}
+      - name: docker-graph-storage
+        hostPath:
+            path: /var/run/docker.sock
 {{- end -}}
