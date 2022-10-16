@@ -1,0 +1,18 @@
+environment: production
+image: johnwatson484/azure-devops-pipeline-agent
+name: azure-devops-pipeline-agent
+
+container:
+  imagePullPolicy: Always
+  requestMemory: 120Mi
+  requestCpu: 120m
+  limitMemory: 1000Mi
+  limitCpu: 1000m
+
+deployment:
+  replicas: 3
+
+agent:
+  url: https://dev.azure.com/johnwatson484
+  pat: mySecretPATCreatedInAzureDevOps
+  pool: Kubernetes

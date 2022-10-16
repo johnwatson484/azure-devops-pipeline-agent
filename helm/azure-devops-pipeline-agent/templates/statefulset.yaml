@@ -1,0 +1,8 @@
+{{- include "helm-library.statefulset" (list . "azure-devops-pipeline-agent.statefulset") -}}
+{{- define "azure-devops-pipeline-agent.statefulset" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "helm-library.container" (list . "azure-devops-pipeline-agent.container") }}
+{{- end -}}
