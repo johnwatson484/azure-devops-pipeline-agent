@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as production
+FROM ubuntu:20.04 as production
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
