@@ -8,3 +8,5 @@ services:
       AZP_URL: https://dev.azure.com/johnwatson484
       AZP_TOKEN: ${AZURE_DEVOPS_PAT}
       AZP_POOL: Kubernetes
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
