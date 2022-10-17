@@ -27,6 +27,11 @@ RUN dpkg -i packages-microsoft-prod.deb
 RUN apt-get update
 RUN apt-get install -y powershell
 
+# Install Docker
+RUN curl -fsSL https://get.docker.com -o get-docker.sh
+RUN sh get-docker.sh
+COPY ./docker-compose /usr/bin/docker-compose
+
 WORKDIR /azp
 
 COPY ./start.sh .
