@@ -30,7 +30,11 @@ RUN apt-get install -y powershell
 # Install Docker
 RUN curl -fsSL https://get.docker.com -o get-docker.sh
 RUN sh get-docker.sh
-COPY ./docker-compose /usr/bin/docker-compose
+
+# Install Docker Compose
+RUN curl -SL https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+RUN ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
 
 WORKDIR /azp
 
