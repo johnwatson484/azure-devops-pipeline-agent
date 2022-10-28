@@ -36,6 +36,9 @@ RUN curl -SL https://github.com/docker/compose/releases/download/v2.12.2/docker-
 RUN ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
 
+# Install Helm
+RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
 WORKDIR /azp
 
 COPY ./start.sh .
