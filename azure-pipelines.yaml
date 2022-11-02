@@ -7,9 +7,12 @@ resources:
     type: github
     endpoint: John D Watson
     name: johnwatson484/azure-devops-templates
+    ref: refs/tags/1
 
 extends:
   template: build.yaml@templates
   parameters:
-    repo: azure-devops-pipeline-agent
+    name: azure-devops-pipeline-agent
     framework: helm
+    deploy: true
+    namespace: azure-devops
