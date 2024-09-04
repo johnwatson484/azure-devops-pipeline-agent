@@ -4,6 +4,8 @@ metadata:
   name: {{ .Values.name | quote }}
   labels:
     {{- include "azure-devops-pipeline-agent.labels" . | nindent 4 }}
+  annotations:
+    secrets.infisical.com/auto-reload: "true"
 spec:
   podManagementPolicy: Parallel
   replicas: {{ .Values.deployment.replicas }}

@@ -9,5 +9,8 @@ deployment:
 
 agent:
   url: https://dev.azure.com/johnwatson484
-  pat: mySecretPATCreatedInAzureDevOps
   pool: Kubernetes
+
+secret:
+  secretsPath: /azure-devops-pipeline-agent
+

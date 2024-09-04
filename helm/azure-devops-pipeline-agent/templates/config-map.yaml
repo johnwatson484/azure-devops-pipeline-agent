@@ -6,5 +6,4 @@ metadata:
     {{- include "azure-devops-pipeline-agent.labels" . | nindent 4 }}
 data:
   AZP_URL: {{ .Values.agent.url }}
-  AZP_TOKEN: {{ .Values.agent.pat }}
   AZP_POOL: {{ .Values.agent.pool }}

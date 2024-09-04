@@ -7,6 +7,9 @@ securityContext:
 envFrom:
 - configMapRef:
     name: {{ .Values.name }}
+- secretRef:
+    name: {{ .Values.name }}
+
 volumeMounts:
 - name: docker-graph-storage
   mountPath: /var/run/docker.sock

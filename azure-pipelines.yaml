@@ -16,4 +16,3 @@ extends:
     framework: helm
     deploy: true
     namespace: azure-devops
-    hasSecureHelmValuesFile: true
