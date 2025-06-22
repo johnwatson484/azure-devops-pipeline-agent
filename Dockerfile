@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
@@ -13,7 +13,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommend
     lsb-release \
     software-properties-common \
     wget
-
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
@@ -30,11 +29,6 @@ RUN apt-get install -y powershell
 # Install Docker
 RUN curl -fsSL https://get.docker.com -o get-docker.sh
 RUN sh get-docker.sh
-
-# Install Docker Compose
-RUN curl -SL https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-RUN ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-RUN chmod +x /usr/local/bin/docker-compose
 
 # Install Helm
 RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
