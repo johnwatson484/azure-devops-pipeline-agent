@@ -14,5 +14,5 @@ extends:
   parameters:
     name: azure-devops-pipeline-agent
     framework: helm
-    deploy: true
+    deploy: false # Deployment needs to be manual using Helm CLI as the agent is the deployment target
     namespace: azure-devops
