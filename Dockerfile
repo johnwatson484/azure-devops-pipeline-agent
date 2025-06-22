@@ -1,31 +1,20 @@
 FROM ubuntu:22.04
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+ENV TARGETARCH="linux-x64"
+# Also can be "linux-arm", "linux-arm64".
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
-    apt-transport-https \
-    apt-utils \
-    ca-certificates \
-    curl \
-    git \
-    iputils-ping \
-    jq \
-    lsb-release \
-    software-properties-common \
-    wget \
-    unzip
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y curl \
+  git \
+  jq \
+  libicu70 \
+  zip \
+  unzip \
+  wget \
+  jq
 
+# Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-
-# Can be 'linux-x64', 'linux-arm64', 'linux-arm', 'rhel.6-x64'.
-ENV TARGETARCH=linux-x64
-
-# Install PowerShell
-RUN apt-get update
-RUN wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
-RUN dpkg -i packages-microsoft-prod.deb
-RUN apt-get update
-RUN apt-get install -y powershell
 
 # Install Docker
 RUN curl -fsSL https://get.docker.com -o get-docker.sh
@@ -38,9 +27,17 @@ RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | b
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
-WORKDIR /azp
+WORKDIR /azp/
 
-COPY ./start.sh .
-RUN chmod +x start.sh
+COPY ./start.sh ./
+RUN chmod +x ./start.sh
+
+# Create agent user and set up home directory
+RUN useradd -m -d /home/agent agent
+RUN chown -R agent:agent /azp /home/agent
+
+USER agent
+# Another option is to run the agent as root.
+# ENV AGENT_ALLOW_RUNASROOT="true"
 
 ENTRYPOINT [ "./start.sh" ]
